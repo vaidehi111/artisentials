@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budget-Friendly Shading Tools - SketchSmart Tools</title>
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+     html {
+      scroll-behavior: smooth;
+    }
+
+body {
+  overflow-x: hidden;
+}
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fffdfb;
+      color: #333;
+    }
+
+    nav.navbar {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff7e5f;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .nav-links li a.active,
+    .nav-links li a:hover {
+      color: #ff7e5f;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(to right, #e5e5e5, #cccccc, #b3b3b3);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+      border-radius: 0.5rem;
+      
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: #333333;
+
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #333333;
+
+    }
+
+    .dropdown {
+  position: relative;
+}
+
+.dropdown .arrow {
+  font-size: 0.7rem;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  min-width: 220px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      text-align: center;
+      padding: 1rem;
+    }
+
+   .product-card img {
+      object-fit: cover;
+      width: 100%;
+      height: auto;      /* change this */
+      max-width: 100%; /* optional max height */
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      font-size: 1.2rem;
+      margin: 0.8rem 0 0.5rem;
+      color: #333;
+    }
+
+    .product-card p {
+      font-size: 0.95rem;
+      color: #555;
+      padding: 0 1rem 1rem;
+    }
+
+    .product-card a {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .product-card a:hover {
+      background: linear-gradient(to right, #ff956e, #ffc085);
+    }
+
+   footer {
+  background-color: #fff;
+  color: #666; /* light gray text */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); /* subtle light border */
+}
+
+footer p {
+  margin: 8px 0;
+}
+
+footer a {
+  color: #b36b00; /* soft brown/golden */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Hamburger icon styling */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Default nav styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+/* Dropdown menu (desktop view) */
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none; /* Disable hover effect on mobile */
+  }
+
+  .dropdown-menu a {
+    padding: 0.3rem 0;
+  }
+  /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+}
+
+/* Show dropdown when active */
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+}
+ /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+}
+
+
+
+/* Desktop: show dropdown on hover */
+@media (min-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+
+  }
+}
+
+/* Mobile: show dropdown on click (when .open is added) */
+@media (max-width: 767px) {
+  .dropdown.open .dropdown-menu {
+    display: block;
+     /* avoid position issues on small screen */
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+  <div class="logo">🎨 Artisentials</div>
+
+  <!-- Hamburger Icon -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- Nav Links -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+
+   <li class="dropdown">
+
+  <a href="canvas.html" href="canvas.html" onclick="toggleDropdown(event)" >Canvas Essentials ▼</a>
+  <ul class="dropdown-menu">
+    <li><a href="canvas.html">Best Quality & Trusted products</a></li>
+    <li><a href="canvasbudget.html">Good-Quality & Budget-Friendly products</a></li>
+    
+  </ul>
+</li>
+
+
+   <li class="dropdown">
+
+  <a href="shading.html"  onclick="toggleDropdown(event)" style="color:#ff7e5f;">Shading Tools    ▼</a>
+  <ul class="dropdown-menu">
+     <li><a href="shading.html">Best Quality & Trusted products</a></li>
+    <li><a href="shadingbudget.html">Good-Quality & Budget-Friendly products</a></li>
+   
+  </ul>
+</li>
+
+
+    <li><a href="tips.html">Tips</a></li>
+  </ul>
+</nav>
+
+
+  <header>
+    <h1> Shading Tools</h1>
+    <p>Shading Tools for Every Aspiring Artist – Where Quality Meets Affordability</p>
+  </header>
+
+  <main class="product-grid">
+    <!-- Sample Product 1 -->
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61iZE37TQaL._SL1080_.jpg" alt="BFaber-Castell Castell 9000 Pencil Set">
+      <h3>Faber-Castell Castell 9000 Pencil Set</h3>
+      <p>Faber-Castell Castell 9000 Pencil Set includes 6 premium graphite pencils (HB–8B) with break-resistant SV-bonded leads, ideal for artists, students, and designers. Smooth, high-quality pencils ensure precise, non-scratchy drawing.</p>
+      <a href="https://www.amazon.in/Faber-Castell-Castell-9000-Pencil-Set/dp/B00COMESOQ?dib=eyJ2IjoiMSJ9.LB2uVKmOLVVG1kpZrHw_IrOKYfvW2IkNCSHU7WJ6LmfUqAxVgTDpjAplSPZj2XAVst3HwPLcwQDm8pIZ--Lq_YAzzF0M0mwulvTG-ebDWPvfl6W-fbEIYCQ31tt1E7JSU0fEhGTYXSdyslqE5Y3kLCzEVxyDP3CeJsGWEawyiD7oETQPYyZ7yeH2eJPLET_2wqi5Q6yee-dam8S2rrHwbGDXRQ7-5bZruP7CfF3BHIvBCXlhxjrZJnQxKuBHYXv9YFn-EfIWmWq3ZmXD3vI7MByx7-22nC1Kd86yj59WMhc.mTGbBxOXDJ0VB4-wxjnAUAMidVOO5_3ljlyjz9bRpm4&dib_tag=se&keywords=Faber-Castell+9000+Graphite+Pencil+Set+%286B%E2%80%934H%29&qid=1748180305&sr=8-2&linkCode=ll1&tag=arttools12-21&linkId=db68415891ac4aa3c945836ddce0c2e8&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <!-- Sample Product 2 -->
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61IxMIwotJL._SL1080_.jpg" alt="Nitram Academie Fusains Fine Art Charcoal ">
+      <h3>Nitram Academie Fusains Fine Art Charcoal </h3>
+      <p>Nitram Academie Fusains Fine Art Charcoal (HB, Box of 5) offers medium soft sticks ideal for drawing and sketching, perfect for homogenizing tones while retaining rich tonal details with precision.</p>
+      <a href="https://www.amazon.in/Nitram-Academie-Fusains-Fine-Charcoal/dp/B004Y69G6K?pd_rd_w=9ebF9&content-id=amzn1.sym.d1afc5d3-2e83-45f5-8382-2dc0d946ef8f&pf_rd_p=d1afc5d3-2e83-45f5-8382-2dc0d946ef8f&pf_rd_r=NHBJH6NK61EDH7T6F30B&pd_rd_wg=dPHWU&pd_rd_r=0b6258cf-aecf-4649-af6f-770b299f48ee&pd_rd_i=B004Y69G6K&psc=1&linkCode=ll1&tag=arttools12-21&linkId=211ff66a0f907819670ca5a197791ef0&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61V9Ory6N8L._SL1000_.jpg" alt="Derwent Tinted Charcoal Drawing Pencils ">
+      <h3>Derwent Tinted Charcoal Drawing Pencils </h3>
+      <p>Derwent Tinted Charcoal Pencils (Set of 24) combine rich charcoal with subtle color, ideal for smudging, blending, and adding soft accents to drawings. Perfect for artists seeking expressive, textured effects.</p>
+      <a href="https://www.amazon.in/DERWENT-Tinted-Charcoal-Pencils-Tin/dp/B00133KNVY?pd_rd_w=pDOQ6&content-id=amzn1.sym.1f02df7f-f362-4e6d-9a92-f270d75713e4&pf_rd_p=1f02df7f-f362-4e6d-9a92-f270d75713e4&pf_rd_r=AW3MD8R7DW4KHAF6JNGW&pd_rd_wg=okrQR&pd_rd_r=ff848eef-09ed-4ef5-bb33-d8d2c39009d4&pd_rd_i=B00133KNVY&th=1&linkCode=ll1&tag=arttools12-21&linkId=fb18e93737fc9aa27db854462d4be4f2&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+     <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51KtUlsQWML._SL1500_.jpg" alt="OFIXO Blending Smudge Tortillon Paper Stump">
+      <h3>OFIXO Blending Smudge Tortillon Paper Stump</h3>
+      <p>OFIXO 6pcs Blending Stump Set includes 6 sizes of paper stumps for shading, smudging, and blending. Ideal for sketching with pencils or pastels. Reusable, sharpenable, and easy to use.</p>
+      <a href="https://www.amazon.in/OFIXO-Blending-Smudge-Tortillon-Drawing/dp/B07T313PZL?crid=7EWUGLRUIYRK&dib=eyJ2IjoiMSJ9.aJvu8YLtH0gbSwPb2eWED-G5Xn33KtfwFnGizMtvDNTUK4iOGTR04xQeYt9e7r3GcZZsia2Je20bH5OSSeQ8Av9nGCdM7PtYIyQrylLzkb0qCmcESXIRE90ZjnYK0Zc1qWZB3UCWQ-0KYDE9KnGWHI8rzCTPx88ZQr2q8VUbPy7wNIbet81qyWi8ps87r7MyNuM09JTeVT1th-bs-0DaGMffcMnfCP0cKDhRLAPJjoMs_rFmcFmlYhv0cf6Pc_QSRHHg1x6JzePgYWdRBqX0JKWgbS177Z-SQmfzPN95o4s.r5AQaaFBgYLnqMcLJVN6VOtCXG-rEKfJ4gwFfSLlA8c&dib_tag=se&keywords=Prismacolor+Blending+Stumps+%26+Tortillons&qid=1748182535&s=office&sprefix=prismacolor+blending+stumps+%26+tortillons%2Coffice-products%2C364&sr=1-12&linkCode=ll1&tag=arttools12-21&linkId=5a5476ff76f722b067664d8c1103495c&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+     <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61r-VM7vgrL._SL1325_.jpg" alt="Faber-Castell Kneadable Eraser">
+      <h3>Faber-Castell Kneadable Eraser</h3>
+      <p>Faber-Castell Kneadable Erasers (Pack of 3) are perfect for correcting charcoal and pencil work. Easily moldable, reusable, and mess-free, they come in a handy plastic storage box.</p>
+      <a href="https://www.amazon.in/Faber-Castell-Kneadable-Eraser-Plastic-Pack/dp/B01K9K4LOG?crid=CN9FZJ4XNU9T&dib=eyJ2IjoiMSJ9.9XffrPBVHbBPjvMuM7nfrZV_CaD4SuuO5NXtuN9z3r9pcdKDeAsqWQPJAWdBJS74fMMk6KI1wUAXMnsdVjLG5rnDBhhxJxtdemxDH9_yxyOAfSMI_eT-SFmeFXw_xWWRKzMex_bgAe_hwBGNYniw9vRy2lhBYKGV-RVRD6JTJ50EiAb-7IrTqv3uRY4rPTepmwyuyURP56_0VLLLI8cWSJRt4GZrBUJ2946TxYw0Uolvq0pjzuTIu1jZcGFx7otclzS8apY0Lqy8dtm-ZvD_c7azNfNj55bqL7FOmEoO1gc.P59c2eXhqVnBlyP52wCaOM0iAZJEJWrzIJc_UevJNiw&dib_tag=se&keywords=Faber-Castell+Kneaded+Eraser+%28Dust-Free%29&qid=1748185846&sprefix=faber-castell+kneaded+eraser+dust-free+%2Caps%2C319&sr=8-2&linkCode=ll1&tag=arttools12-21&linkId=89b3e1a8b62181b569f7c865af5e7ef0&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/61Nris9G6iL._SL1000_.jpg" alt="Derwent Tinted Charcoal Pencils">
+      <h3>Derwent Tinted Charcoal Pencils</h3>
+      <p>Derwent Tinted Charcoal Pencils (Set of 6) combine rich charcoal with subtle color. Ideal for blending, smudging, and adding accents. Professional quality, water-soluble, with easy-grip barrels for smooth application.</p>
+      <a href="https://www.amazon.in/DERWENT-Tinted-Charcoal-Pencils-Blister/dp/B0028D3720?crid=3Q79U3Y9NXSEZ&dib=eyJ2IjoiMSJ9.QajQ4wWPwtX0zj7DqD4CVvnrGlu1R7m2VGCHaLqR-9wgO73oNFjcYYG3QE6Qg4yll8dsr-W0e4WXl3k0iR2kXxD2N2uQJzJ0EdK-srMiGfSbANvRPV5ueNoZlRrA1kvw5j2KS5Py3RN9oPwR-PmBiQebjf9q7VaxJM-DjLh7vUapmQeH0Jp94-i6TnNQxuqNKrYmMvlFZtpp318ELQMSWGmPtegAGM9mr0sXUJxM2MDsjhRyC7q6IVgC32pokslXQ_7QwTrTkjb0M2ZNEXuol9bcGgbE_w8_JhhVYuuu_J4.ylxPsD_p-klvhS8lPssgm89oMKIbcB6hjcfCPq2fPpU&dib_tag=se&keywords=Camlin%2BCharcoal%2BPencils%2BSet&qid=1747723731&sprefix=camlin%2Bcharcoal%2Bpencils%2Bset%2Caps%2C265&sr=8-3-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1&linkCode=ll1&tag=arttools12-21&linkId=06bac559ad66f87e6581f64eaa8af722&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61PHU5BoT4L._SL1000_.jpg"  alt="Derwent Battery Operated Eraser ">
+      <h3>Derwent Battery Operated Eraser </h3>
+      <p>Derwent Battery Operated Eraser offers precision erasing for graphite, colored, and pastel pencils. Includes 8 refills, features an ergonomic design, gentle vibration, and is ideal for detail work. Batteries not included.</p>
+      <a href="https://www.amazon.in/Derwent-Battery-Operated-Replacement-Erasers/dp/B0027IW9GG?crid=2SAAYHBTWM7R4&dib=eyJ2IjoiMSJ9.xAkekZh1NH_pO6JFC3c8-zkwXur_ilqCOOMRpdqBxfRM0KxCSOPnGMGzPy_ZR8GKKa958vWKoFHpWuuZXyNrzNaIHmctjeIQb_U1p2RSTmqQ8EsS-wXZBqtJTlKYdAfmv3S7BPNczhedhM_Av5QY3rTQbt2k_24MblDlysz0LpwW6Rc-cQP9BENIwmZLlRQibKpdOs8ya8Ju4VCOpnK7WGXHe8OuYje68AbCloRef45G98OEWMWTe_3qw_RnskwzZu8G8u3IV-TqayrZj_kVK4AGD6X3KV9xW0_dLy36ydo.jM1kaAxAmNenssOLbYstm1LiZpReGlOTWoYIdGwT0xg&dib_tag=se&keywords=Derwent%2BBattery%2BOperated%2BEraser&qid=1748187443&sprefix=derwent%2Bbattery%2Boperated%2Beraser%2Caps%2C329&sr=8-1&th=1&linkCode=ll1&tag=arttools12-21&linkId=8254994dbb7a4af6120141f8c85533c7&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51PMdy7k4AL.jpg" alt="Camel Compressed Charcoal Sticks">
+      <h3>Camel Compressed Charcoal Sticks</h3>
+      <p>Camel Compressed Charcoal Stick offers smooth, rich black strokes for artists. Made from synthetic charcoal, it's ideal for sketching on paper or canvas. Individually wrapped, 90mm long, 12mm thick, 160g.</p>
+      <a href="https://www.amazon.in/Camel-500917-Compressed-Charcoal-Sticks/dp/B00LY1F9U0?crid=2IG6YR0TFGT91&dib=eyJ2IjoiMSJ9.RKqySRTyeSS35tgXXB8dHzwsTi4LiZnsSr40juH0j3kXNPaWURmwtwMvp7eXYg7g-PA31m4lRYHMYX2uNQ1fnZoH8Xu2UnzRmlp2zH0clkBdlgpmUGxftPbYXSESHkb6S6D4cuy51y4EzrDXMeT_3bPdlhjARzB4vvtE_EsrkJ-JHOT7HSyzElrjNSPLq8_1QUC9hDtisHPXAhp2vTCi7bR3Xwypmxmyf3DswykYeD8XqWeAIwxycAH5dtDjKWUewdd9Mus8nghGzoft4PAnFoWW21cPT-aqvg1LNfh9kAQ._wkbjHeNQzMebOi_DxzXkJMsPRsp-kC7zcPsXMzRM_w&dib_tag=se&keywords=Camel+Soft+Charcoal+Sticks&qid=1748188825&s=kitchen&sprefix=camel+soft+charcoal+sticks%2Ckitchen%2C380&sr=1-1&linkCode=ll1&tag=arttools12-21&linkId=5dfdfc13d62c828fa7d30eb7cb51f0ce&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71zVAJSZzOL._SL1500_.jpg"  alt="Camel Artists Fixative Spray">
+      <h3>Camel Artists Fixative Spray</h3>
+      <p>Camel Artists Fixative Spray (200ml) offers a matte finish and protects dry drawing materials. Packaged in a spray tin, it helps preserve artwork by preventing smudging and ensuring long-lasting durability.</p>
+      <a href="https://amzn.to/3H9gYKG" target="_blank">Buy on Amazon</a>
+    </div>
+
+
+    <!-- Add more budget shading tools similarly -->
+  </main>
+
+  <footer class="bg-white mt-16 border-t">
+  <div class="max-w-6xl mx-auto py-8 px-6 text-center text-sm text-gray-600 space-y-3">
+    <p>© 2025 Artisentials Tools. All rights reserved.</p>
+    <p>
+      Need help or have a question? Contact me on Instagram 
+      <a href="https://www.instagram.com/_vaidehi.art_?igsh=MXJxM3p3OGU4bHYxbg==" 
+         class="text-amber-600 font-medium hover:underline" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         aria-label="Instagram - Vaidehi Art">@_vaidehi.art_</a>
+    </p>
+    
+  </div>
+  <nav style="margin-bottom: 10px;">
+    <a href="privacy.html" style="margin: 0 10px; color: #666; text-decoration: none;">Privacy Policy</a> |
+    <a href="terms.html" style="margin: 0 10px; color: #666; text-decoration: none;">Terms of Use</a> |
+    <a href="disclaimer.html" style="margin: 0 10px; color: #666; text-decoration: none;">Affiliate Disclaimer</a> |
+    <a href="cookies.html" style="margin: 0 10px; color: #666; text-decoration: none;">Cookie Notice</a>
+  </nav>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('active');
+  }
+
+  function toggleDropdown(event) {
+    // Only trigger click-based dropdown for mobile
+    if (window.innerWidth < 768) {
+      event.preventDefault();
+      const parent = event.target.closest('.dropdown');
+      parent.classList.toggle('open');
+    }
+  }
+</script>
+
+
+</body>
+</html>

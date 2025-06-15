@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shading Tools - SketchSmart Tools</title>
+  
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefcfb;
+      color: #333;
+    }
+
+    nav.navbar {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff7e5f;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .nav-links li a.active,
+    .nav-links li a:hover {
+      color: #ff7e5f;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(to right, #e5e5e5, #cccccc, #b3b3b3);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+      border-radius: 0.5rem;
+      
+    }
+
+    header h1 {
+       font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: #333333;
+
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #333333;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown .arrow {
+      font-size: 0.7rem;
+      margin-left: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown:hover .arrow {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 240px;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 10px 15px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: #f0f0f0;
+    }
+
+    section.products-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .products-section h2 {
+      font-size: 2rem;
+      text-align: left;
+      margin-bottom: 2rem;
+      color: #333333;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px) scale(1.015);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    }
+
+   .product-card img {
+      object-fit: cover;
+      width: 100%;
+      height: auto;      /* change this */
+      max-width: 100%; /* optional max height */
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      font-size: 1.3rem;
+      margin: 1rem 0 0.5rem;
+      color: #333;
+    }
+
+    .product-card p {
+      font-size: 0.95rem;
+      color: #555;
+      padding: 0 1rem 1rem;
+    }
+
+    .product-card a {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .product-card a:hover {
+      background: linear-gradient(to right, #ff956e, #ffc085);
+    }
+
+    footer {
+  background-color: #fff;
+  color: #666; /* light gray text */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); /* subtle light border */
+}
+
+footer p {
+  margin: 8px 0;
+}
+
+footer a {
+  color: #b36b00; /* soft brown/golden */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Hamburger icon styling */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Default nav styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+/* Dropdown menu (desktop view) */
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none; /* Disable hover effect on mobile */
+  }
+
+  .dropdown-menu a {
+    padding: 0.3rem 0;
+  }
+  /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+}
+
+/* Show dropdown when active */
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+}
+ /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+}
+
+
+
+/* Desktop: show dropdown on hover */
+@media (min-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+
+  }
+}
+
+/* Mobile: show dropdown on click (when .open is added) */
+@media (max-width: 767px) {
+  .dropdown.open .dropdown-menu {
+    display: block;
+     /* avoid position issues on small screen */
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+  <div class="logo">🎨 Artisentials</div>
+
+  <!-- Hamburger Icon -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- Nav Links -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+
+   <li class="dropdown">
+
+  <a href="canvas.html" href="canvas.html" onclick="toggleDropdown(event)" >Canvas Essentials ▼</a>
+  <ul class="dropdown-menu">
+    <li><a href="canvas.html">Best Quality & Trusted products</a></li>
+    <li><a href="canvasbudget.html">Good-Quality & Budget-Friendly products</a></li>
+    
+  </ul>
+</li>
+
+
+   <li class="dropdown">
+
+  <a href="shading.html"  onclick="toggleDropdown(event)" style="color:#ff7e5f;">Shading Tools    ▼</a>
+  <ul class="dropdown-menu">
+     <li><a href="shading.html">Best Quality & Trusted products</a></li>
+    <li><a href="shadingbudget.html">Good-Quality & Budget-Friendly products</a></li>
+   
+  </ul>
+</li>
+
+
+    <li><a href="tips.html">Tips</a></li>
+  </ul>
+</nav>
+
+  <header>
+    <h1>Shading Tools</h1>
+    <p>Craft perfect shadows and soft blends with tools designed for excellence.</p>
+  </header>
+
+  <section class="products-section">
+    <h2>✏️Shading Tools</h2>
+    <div class="product-grid">
+      <!-- Product cards go here (you already have them) -->
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/81xAWOE5SWL._SL1500_.jpg" alt="Staedtler Mars Lumograph">
+      <h3>Staedtler Mars Lumograph</h3>
+      <p>Staedtler Mars Lumograph 100G6 pencil set includes 6 premium-quality graphite pencils (8B–HB), ideal for writing, sketching, and drafting. Break-resistant, easy to erase/sharpen, perfect for artists and graphic designers.</p>
+      <a href="https://www.amazon.in/Staedtler-Lumograph-100G6-Grades-Pencil/dp/B000X06LQE?dib=eyJ2IjoiMSJ9.Lw-TCnd0awBn46eguFmnaZYbSLXY1QsnPBAX2_XYgRSOW39i4z7DVVv2dPa8EcuMdMxl5eQkUt3MA-XKewKyd8G-HOW60Tvtx-nhx9cDO8Kay48czvHACnFv0Lu-IgDwAglm2nkY1LnqmvcumFAaLjBgUJC6E2rQzYSutPsXyORM2T8RbyacQHc1jrg_CML_wu5df3Ot-oKENbB3hAPmvn76IJudhQu7LuwgZhXXil2IhxZhkPVhDYnh72MaN41jP11cGNFfiP3GXKLpwSQ3FRNGkVn59fAuq1OXe1WVAVk.J5mAi3rnJHu6U0vdeImsVf15lNPbeqGxdaq0UgJqWTQ&dib_tag=se&keywords=Staedtler%2BMars%2BLumograph%2BPencils%2B%2812%2BGrades%29&qid=1748180451&sr=8-1&th=1&linkCode=ll1&tag=arttools12-21&linkId=30910ac171ec0ae332c4f2702c6dd067&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/61QKVMwXftL._SL1333_.jpg" alt="General's Charcoal White Pencils">
+      <h3>General's Charcoal White Pencils</h3>
+      <p>General's Charcoal White Pencils offer smooth, blendable white charcoal ideal for highlights in charcoal or graphite art. Handcrafted from cedar, AP/ACMI approved, non-toxic, eco-conscious, and lead-free.</p>
+      <a href="https://www.amazon.in/Generals-Charcoal-White-558-Pencils/dp/B003V8A6HK?crid=VTW93TCAZYV6&dib=eyJ2IjoiMSJ9.kSMqh1NAimun8478rxx9jEGDejYEpkzISls-ZyFiRAcbz5i3pM4LyMb0_vshgX01aBl7XHfZvUPSPu65GKNYRXgsQ7XavsFLMDecbLLLz6cfQZ0QVBPvcGB1ZNlR_MBzNOyocnQJw1T36Yc0vOklyaiGLxR6SyyZUa4-VsQEJbcJ6MW-yZrrXzwA6sjri1lfvsJ6UfkEl67kttUbtIKHgIcGQ7ONH9P9_8-TcI-tfLf8lOYhCHtDK0W8nwor0nqKx64zxgC89Rr7wlvY9qrJDLG303XgityK9qv1Yz4LTT0.KCBR9tKbs3SksRS59jbG-f5-bCSBN9qsfjTnHhWnNkI&dib_tag=se&keywords=General%E2%80%99s+Charcoal+Pencils+Set&qid=1748180784&s=kitchen&sprefix=general+s+charcoal+pencils+set%2Ckitchen%2C375&sr=1-18&linkCode=ll1&tag=arttools12-21&linkId=4920e4e40efaed8ae9a9f680f801b55e&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+   
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51slVijRDjL._SL1000_.jpg" alt="Tombow Mono Zero Eraser ">
+      <h3>Tombow Mono Zero Eraser </h3>
+      <p>Tombow Mono Zero Eraser Value Pack includes 2.3mm round tip eraser and refill. Features ultra-fine precision, pen-style body, push-button advance, and clip—ideal for detailed, clean pencil mark removal.</p>
+      <a href="https://www.amazon.in/Tombow-Eraser-Round-Mono-Shade-Refill/dp/B07DJ4DNV2?crid=1YD1A95HS45MV&dib=eyJ2IjoiMSJ9.BBmru3XYEMPpqH8oXM7rD_rKjICZL0F32Q1jWTDRQ4fVu8Ua5mIrJkyWJiRZrxMKllXcGOPFCtQgZwBWmTsZko2c9xAFlQB5xOYzVPmSJPpqedSLSAiNUYOqZ-z1-NvZTXCyu5xCIcSrvWBnjkEWvRjAEHcKaIkUs76XK5FRYLrLzgfpSnG-eba2waj2RNWNs9UBMAnMcjJDkRFBu-4m1k579G5hk3ue3cuJdCE2QLkeXR3rBky-C8nBTb1dap6wlYOMdA41GIbkS9Vh9B1tVHQLnz7Twi1kCdZ4Ja5ObDM.FIJ8j4A5xTwK0KWQthPGNQb2zEg2BZsyFB5Hkbbu-0k&dib_tag=se&keywords=Tombow%2BMono%2BZero%2BEraser%2B%28Precision%2BTip%29&qid=1748185714&sprefix=tombow%2Bmono%2Bzero%2Beraser%2Bprecision%2Btip%2B%2Caps%2C312&sr=8-1&th=1&linkCode=ll1&tag=arttools12-21&linkId=f414f705259808949aa7c18125ef35ef&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/81a+-MM9GqL._SX679_.jpg" alt="Canson XL Series Bristol Pad, Heavyweight Paper">
+      <h3>Canson XL Series Bristol Pad, Heavyweight Paper</h3>
+      <p>Canson XL Bristol Pad has 25 heavyweight, bright white 11x14-inch sheets. Smooth, acid-free 100lb paper ideal for pen, ink, marker, pencil, and colored pencil with excellent erasability and scanning quality.</p>
+      <a href="https://www.amazon.in/Canson-Bristol-Smooth-Fold-Over/dp/B015FP7KN4?crid=18K5HVNT6IAOM&dib=eyJ2IjoiMSJ9.rUYLAjRFQUNr2a-DgAWBY-244Go0n_XPvlyQwxLODQjvPW1kZsh5EelMK0Dd6kKVMx44PSj7LISanO-XY5bIfVRj3pJ8gsXaZyykSgBnk9vS4HZMzwQy9etSg6lDBrV3XDuk5Uay7_ptk-6DB4_WszBOHm0xA_AOanpwsbSyRq_ScZk4PWV8GAUAdEwuFQObMpr7AiFrcc-SWRsPxs2IaT2wQICiprd9QI17x-eTjfX1Km77MAxjdtuPdUTnjfC0kzYr8Lc1V5Er-EOsfGuoyrnBCtzmDHV8hgPXymTBqqo.vLMI1QiFHY83vMM5nQnURyub2o4_dH-dgU5mCaPedzE&dib_tag=se&keywords=Canson%2BXL%2BBristol%2BSmooth%2FVellum%2BPad&qid=1748186098&sprefix=canson%2Bxl%2Bbristol%2Bsmooth%2Fvellum%2Bpad%2Caps%2C322&sr=8-1&th=1&linkCode=ll1&tag=arttools12-21&linkId=1023155998f32027587553521ee0ae95&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+    
+   
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/512M+qwUR0L._SL1080_.jpg" alt="General Pencil 6B Soft Charcoal Pencils">
+      <h3>General Pencil 6B Soft Charcoal Pencils</h3>
+      <p>General Pencil 6B Soft Charcoal Pencils, pack of 2, feature high-quality willow charcoal for smooth, soft drawing and sketching. Round barrel, pre-sharpened, ideal for artists and illustrators.</p>
+      <a href="https://www.amazon.in/Generals-Original-Charcoal-Pencil-Extra/dp/B01M64KQVC?crid=VTW93TCAZYV6&dib=eyJ2IjoiMSJ9.kSMqh1NAimun8478rxx9jEGDejYEpkzISls-ZyFiRAcbz5i3pM4LyMb0_vshgX01aBl7XHfZvUPSPu65GKNYRXgsQ7XavsFLMDecbLLLz6cfQZ0QVBPvcGB1ZNlR_MBzNOyocnQJw1T36Yc0vOklyaiGLxR6SyyZUa4-VsQEJbcJ6MW-yZrrXzwA6sjri1lfvsJ6UfkEl67kttUbtIKHgIcGQ7ONH9P9_8-TcI-tfLf8lOYhCHtDK0W8nwor0nqKx64zxgC89Rr7wlvY9qrJDLG303XgityK9qv1Yz4LTT0.KCBR9tKbs3SksRS59jbG-f5-bCSBN9qsfjTnHhWnNkI&dib_tag=se&keywords=General%E2%80%99s+Charcoal+Pencils+Set&qid=1748180784&s=kitchen&sprefix=general+s+charcoal+pencils+set%2Ckitchen%2C375&sr=1-2&linkCode=ll1&tag=arttools12-21&linkId=56879dec41bbdd1c0c357173089cc60c&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51oUX74NVfL._SL1080_.jpg" alt="General Pencil 4B Soft Charcoal Pencils">
+      <h3>General Pencil 4B Soft Charcoal Pencils</h3>
+      <p>General Pencil 4B Soft Charcoal Pencils, pack of 2, feature high-quality willow charcoal for smooth, soft drawing and sketching. Round barrel, pre-sharpened, ideal for artists and illustrators.</p>
+      <a href="https://www.amazon.in/Generals-%C2%AE-Original-Charcoal-Pencil/dp/B01M254ILI?pd_rd_w=694Lp&content-id=amzn1.sym.d1afc5d3-2e83-45f5-8382-2dc0d946ef8f&pf_rd_p=d1afc5d3-2e83-45f5-8382-2dc0d946ef8f&pf_rd_r=4MCAXRPZ0JKQDWQP870X&pd_rd_wg=UYS3J&pd_rd_r=32b76c52-ab2f-4cc0-859c-21bc35262e40&pd_rd_i=B01M254ILI&psc=1&linkCode=ll1&tag=arttools12-21&linkId=da7c7c544aff18ec311882f0b3037853&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51bIv0TmZ4L._SL1080_.jpg" alt="General Pencil 2B Medium Charcoal Pencils">
+      <h3>General Pencil 2B Medium Charcoal Pencils</h3>
+      <p>General Pencil 2B Medium Charcoal Pencils, made from high-quality willow charcoal for smooth drawing and sketching. Round barrel, pre-sharpened, ideal for teens and adults, illustrators, and graphic artists. Superior artist grade quality.</p>
+      <a href="https://www.amazon.in/Generals-Original-Charcoal-Pencil-Medium/dp/B00DGPGBAO?pd_rd_w=NmiNW&content-id=amzn1.sym.d1afc5d3-2e83-45f5-8382-2dc0d946ef8f&pf_rd_p=d1afc5d3-2e83-45f5-8382-2dc0d946ef8f&pf_rd_r=B6RBEWSAK2NHPQ8DYFW7&pd_rd_wg=c2x1I&pd_rd_r=aee72c73-7696-4436-baf7-3542537055eb&pd_rd_i=B00DGPGBAO&psc=1&linkCode=ll1&tag=arttools12-21&linkId=5f2a9c5b540ef01471b5c60a438e3a0d&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71b3ZuCtPqL._SL1500_.jpg" alt="Slice 10515 Mini Box Cutter ">
+      <h3>Slice 10515 Mini Box Cutter </h3>
+      <p>Slice 10515 Mini Box Cutter features a ceramic rounded-tip blade, integrated magnet, ambidextrous design, and finger-friendly safety edge. Manual retractable, non-sparking, non-conductive, rust-resistant blade lasts 11x longer than metal blades.</p>
+      <a href="https://www.amazon.in/SLICE-10515-Slice-Manual-Cutter/dp/B07KYWLVCQ?crid=312XUDZX8LGT5&dib=eyJ2IjoiMSJ9.tEWMgQuqTKR-x8CugSrQPxOHDT_9mTy_egu5DvRqL-0o1UoW_TAImhBOjdSDgsU3CMf6nkysAgHZ9NpiQyCE3MhhsljUUfW1yKzYdAXxQyhzByiwDdaR3kaX_T0cHRY4APpoDaXGh6JOrWUi1usEq7NEHjRvH0Xu4m-c8EofDd8S6fBZDHZRGAKMqvDe1K7Dq786uUfgQ9oVIvTKOEpiyeqJ4FlZeWCubMQth9PNaAsxXU9_3qN20-VDxUuBAQHTIt37uBRa3ObrfoKDdhP08OyM6LSSeyP46wrCmRX-LzE.mKOFxhW3OVjXuhDkLu97jI-s4cV46pGLnakn8Ikqrxc&dib_tag=se&keywords=Slice%2BCeramic%2BCutter%2B%28for%2BControlled%2BErasing%2Bor%2BScoring%29&nsdOptOutParam=true&qid=1748187672&sprefix=slice%2Bceramic%2Bcutter%2Bfor%2Bcontrolled%2Berasing%2Bor%2Bscoring%2B%2Caps%2C324&sr=8-1&th=1&linkCode=ll1&tag=arttools12-21&linkId=a103bcbd834ff5c0f6a97a1d4bd6dcd4&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+    
+    
+  
+    </div>
+  </section>
+
+ <footer class="bg-white mt-16 border-t">
+  <div class="max-w-6xl mx-auto py-8 px-6 text-center text-sm text-gray-600 space-y-3">
+    <p>© 2025 Artisentials Tools. All rights reserved.</p>
+    <p>
+      Need help or have a question? Contact me on Instagram 
+      <a href="https://www.instagram.com/_vaidehi.art_?igsh=MXJxM3p3OGU4bHYxbg==" 
+         class="text-amber-600 font-medium hover:underline" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         aria-label="Instagram - Vaidehi Art">@_vaidehi.art_</a>
+    </p>
+    <nav style="margin-bottom: 10px;">
+    <a href="privacy.html" style="margin: 0 10px; color: #666; text-decoration: none;">Privacy Policy</a> |
+    <a href="terms.html" style="margin: 0 10px; color: #666; text-decoration: none;">Terms of Use</a> |
+    <a href="disclaimer.html" style="margin: 0 10px; color: #666; text-decoration: none;">Affiliate Disclaimer</a> |
+    <a href="cookies.html" style="margin: 0 10px; color: #666; text-decoration: none;">Cookie Notice</a>
+  </nav>
+   
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('active');
+  }
+
+  function toggleDropdown(event) {
+    // Only trigger click-based dropdown for mobile
+    if (window.innerWidth < 768) {
+      event.preventDefault();
+      const parent = event.target.closest('.dropdown');
+      parent.classList.toggle('open');
+    }
+  }
+</script>
+
+
+</body>
+</html>

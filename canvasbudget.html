@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budget-Friendly Canvas Tools - SketchSmart Tools</title>
+ 
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+     html {
+      scroll-behavior: smooth;
+    }
+
+body {
+  overflow-x: hidden;
+}
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fffdfb;
+      color: #333;
+    }
+
+    nav.navbar {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff7e5f;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .nav-links li a.active,
+    .nav-links li a:hover {
+      color: #ff7e5f;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(90deg, #ffccbc, #ff8a65);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+      border-radius: 0.5rem;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .dropdown {
+  position: relative;
+}
+
+.dropdown .arrow {
+  font-size: 0.7rem;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  min-width: 220px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      text-align: center;
+      padding: 1rem;
+    }
+
+   .product-card img {
+      object-fit: cover;
+      width: 100%;
+      height: auto;      /* change this */
+      max-width: 100%; /* optional max height */
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      font-size: 1.2rem;
+      margin: 0.8rem 0 0.5rem;
+      color: #333;
+    }
+
+    .product-card p {
+      font-size: 0.95rem;
+      color: #555;
+      padding: 0 1rem 1rem;
+    }
+
+    .product-card a {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .product-card a:hover {
+      background: linear-gradient(to right, #ff956e, #ffc085);
+    }
+
+   footer {
+  background-color: #fff;
+  color: #666; /* light gray text */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); /* subtle light border */
+}
+
+footer p {
+  margin: 8px 0;
+}
+
+footer a {
+  color: #b36b00; /* soft brown/golden */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Hamburger icon styling */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Default nav styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+/* Dropdown menu (desktop view) */
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none; /* Disable hover effect on mobile */
+  }
+
+  .dropdown-menu a {
+    padding: 0.3rem 0;
+  }
+  /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+}
+
+/* Show dropdown when active */
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+}
+ /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+}
+
+
+
+/* Desktop: show dropdown on hover */
+@media (min-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+
+  }
+}
+
+/* Mobile: show dropdown on click (when .open is added) */
+@media (max-width: 767px) {
+  .dropdown.open .dropdown-menu {
+    display: block;
+     /* avoid position issues on small screen */
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+ <nav class="navbar">
+  <div class="logo">🎨 Artisentials</div>
+
+  <!-- Hamburger Icon -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- Nav Links -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+
+   <li class="dropdown">
+
+  <a href="canvas.html" href="canvas.html" onclick="toggleDropdown(event)"  style="color:#ff7e5f;">Canvas Essentials ▼</a>
+  <ul class="dropdown-menu">
+    <li><a href="canvas.html">Best Quality & Trusted products</a></li>
+    <li><a href="canvasbudget.html">Good-Quality & Budget-Friendly products</a></li>
+    
+  </ul>
+</li>
+
+
+   <li class="dropdown">
+
+  <a href="shading.html"  onclick="toggleDropdown(event)">Shading Tools    ▼</a>
+  <ul class="dropdown-menu">
+     <li><a href="shading.html">Best Quality & Trusted products</a></li>
+    <li><a href="shadingbudget.html">Good-Quality & Budget-Friendly products</a></li>
+   
+  </ul>
+</li>
+
+
+    <li><a href="tips.html">Tips</a></li>
+  </ul>
+</nav>
+
+  <header>
+    <h1>Canvas Essentials</h1>
+    <p> Essentials for canvas art, selected to spark inspiration without overspending.</p>
+  </header>
+
+  <section class="product-grid">
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/81lvZ7lXbqL._SL1500_.jpg" alt="Fevicryl Painting Colour Set">
+      <h3>Fevicryl Painting Colour Set</h3>
+      <p>Fevicryl Painting Set includes acrylics, pearl metallics, 3D outliners, canvas, and brush. Water-soluble, dries water-resistant. Offers vibrant shades—perfect gift for kids, students, or hobby artists.</p>
+      <a href="https://amzn.to/3Hbqxsz" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61rhPOMJPiL._SL1500_.jpg" alt="Camel Canvas Board">
+      <h3>Camel Canvas Board</h3>
+      <p>Camel Stretched Canvas (25x30 cm) features acid-free cotton-poly blend, triple acrylic primer coating, hand-stretched for perfect tension, tailored corners; ideal for oil, acrylic, fabric paints, and heavy applications.</p>
+      <a href="https://www.amazon.in/Camlin-Kokuyo-Stretched-Canvas-25cm/dp/B00LY1D57O?crid=34JOY1O4ZQTCF&dib=eyJ2IjoiMSJ9.zOJ3T03YHWVrM9RnsnI_fAo2qYtjGBabKB75wregepHuW7MvVBOWOVDIAdaE1DSm6Umqr5U4Fwxhqd-VXij35dN-wcG9ym29wZQBdlCCnorXWvHr58h3jmVSsrfxLdzxIZDh9IGG4aks1SSgQEJ1OOGRLGIGjmhXBcvsi1WjsOCoAQaoEVXJzZvdNaMp6Raczy0aSEnjR9Esfn1eAlhb0BfLtMSeUbMfm-pZ4Yhc93i4A_JnwG53H-2aYxymnWoLP0TgKLaDMcfiq903ZTQBhi_uoRfRNr9kjForNvyhMoM.VlozpFc0h5Yonp9jxLbnXmIgJ3tz8e9bvl53qyBYdrw&dib_tag=se&keywords=Camel+Artist+Canvas+Board&qid=1748165047&s=office&sprefix=camel+artist+canvas+board%2Coffice-products%2C383&sr=1-5&linkCode=ll1&tag=arttools12-21&linkId=f7664f080f8b91fdec5a98a34d841bb5&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/71yXnzJKeOL._SL1500_.jpg" alt="ArtRIght Cotton Canvas Board ">
+      <h3>ArtRIght Cotton Canvas Board </h3>
+      <p>ArtRIght Canvas Board Set includes 8 pre-primed, acid-free cotton panels (2 each: 5x7, 8x10, 9x12, 10x14). Ideal for oil, acrylic, watercolor, tempera, gouache.</p>
+      <a href="https://www.amazon.in/ArtRIght-Cotton-Canvas-Professional-Painting/dp/B09Y5ZW1BV?source=ps-sl-shoppingads-lpcontext&smid=A14HPLBH08WQ94&utm_source=chatgpt.com&th=1&linkCode=ll1&tag=arttools12-21&linkId=5e06326a17cc8ae69aad6b5caa14a24f&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/61e-Fgp0YcL._SL1500_.jpg"  alt="ZAHEPA Folding Painting Palette">
+      <h3>ZAHEPA Folding Painting Palette</h3>
+      <p>ZAHEPA Folding Painting Palette offers 41 compartments (24 color, 12 mixing, 5 water), durable plastic build, leak-proof lock, ergonomic design, ideal for acrylics, watercolors, easy to clean.</p>
+      <a href="https://www.amazon.in/ZAHEPA-Folding-Palette-Painting-Compartments/dp/B0992FH65X?source=ps-sl-shoppingads-lpcontext&smid=A1Q6OJRYHKSYO9&utm_source=chatgpt.com&th=1&linkCode=ll1&tag=arttools12-21&linkId=00924d90bc3122a2181b494bdf7dd1cb&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/91QsIRppUjL._SL1500_.jpg" alt="BRUSTRO Artists Painting Knives">
+      <h3>BRUSTRO Artists Painting Knives</h3>
+      <p>BRUSTRO Artists Palette Knives Set includes 5 stainless steel blades with ergonomic wooden handles, ideal for mixing, spreading, scumbling, and applying thick paints, gesso, modeling paste, and texture gels.</p>
+      <a href="https://www.amazon.in/BRUSTRO-Artists-Palette-Knives-Set/dp/B07MZYNQJ3?crid=2GT9EPYY8Q8Y&dib=eyJ2IjoiMSJ9.wnFOfMVybqVScvuVwWn8puvTt2KZjn9knvxllZceuEzdiaHWcTI05hd8izb5epDE_1bdf4hhsiGS2YGVwqY8VY3sq-UKRQKeaGu1h-s-XeIYHMvVrpD0MoT-8ZHrESDHiLvePinTtLkBY4EDxBZ_hYTHOO0gqpcRGUTF3tcwWg6TfBrYbJ2yVZKpMMGmZm5bQ9rZVGf270asUlrW-BgMiQgOW9xBW6PSKWG50ggMXt3lEhTg3Pd8U37uhsbxltoqBBy0o2wr2czR1ITDz4M-r_eJRAgS9bjruK2Z98ynfGc.51B04Bv1cLWomf48SuDvaJrH-UQ8xiI8UVQBzzUWGko&dib_tag=se&keywords=Brustro+Palette+Knives+%28Set+of+5%29&nsdOptOutParam=true&qid=1747824163&s=kitchen&sprefix=brustro+palette+knives+set+of+5+%2Ckitchen%2C418&sr=1-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1&linkCode=ll1&tag=arttools12-21&linkId=ec3e68de3d3796843c3004b8b90f6f4b&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/51dFC2E4zoL._SL1000_.jpg" alt="Sabahz Trading® Painting Knives">
+      <h3>Sabahz Trading® Painting Knives </h3>
+      <p>Sabahz Trading Set of 5 painting knives features metal blades, polished wooden handles, flexible design, bent handles for ease, ideal for applying paint, pastes, pigments—perfect for beginners and professionals.</p>
+      <a href="https://www.amazon.in/Sabahz-Trading-Painting-Knives-Various/dp/B08NXS3S6R?source=ps-sl-shoppingads-lpcontext&psc=1&smid=A2LZ1BZJYZG0LM&utm_source=chatgpt.com&linkCode=ll1&tag=arttools12-21&linkId=968bd75d52d5f9666856407827723fe6&language=en_IN&ref_=as_li_ss_tl" target="_blank">Buy on Amazon</a>
+    </div>
+
+  </section>
+
+  <footer class="bg-white mt-16 border-t">
+  <div class="max-w-6xl mx-auto py-8 px-6 text-center text-sm text-gray-600 space-y-3">
+    <p>© 2025 Artisentials Tools. All rights reserved.</p>
+    <p>
+      Need help or have a question? Contact me on Instagram 
+      <a href="https://www.instagram.com/_vaidehi.art_?igsh=MXJxM3p3OGU4bHYxbg==" 
+         class="text-amber-600 font-medium hover:underline" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         aria-label="Instagram - Vaidehi Art">@_vaidehi.art_</a>
+    </p>
+    <nav style="margin-bottom: 10px;">
+    <a href="privacy.html" style="margin: 0 10px; color: #666; text-decoration: none;">Privacy Policy</a> |
+    <a href="terms.html" style="margin: 0 10px; color: #666; text-decoration: none;">Terms of Use</a> |
+    <a href="disclaimer.html" style="margin: 0 10px; color: #666; text-decoration: none;">Affiliate Disclaimer</a> |
+    <a href="cookies.html" style="margin: 0 10px; color: #666; text-decoration: none;">Cookie Notice</a>
+  </nav>
+    
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('active');
+  }
+
+  function toggleDropdown(event) {
+    // Only trigger click-based dropdown for mobile
+    if (window.innerWidth < 768) {
+      event.preventDefault();
+      const parent = event.target.closest('.dropdown');
+      parent.classList.toggle('open');
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SketchSmart Tips - Real Artist Secrets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    /* Navbar */
+    nav.navbar {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff7e5f;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .nav-links li a.active,
+    .nav-links li a:hover {
+      color: #ff7e5f;
+    }
+     .dropdown {
+  position: relative;
+}
+
+.dropdown .arrow {
+  font-size: 0.7rem;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  min-width: 220px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+
+    @media (max-width: 768px) {
+      .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hamburger {
+        display: block;
+        align-self: flex-end;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li a {
+        padding: 0.8rem;
+        display: block;
+        width: 100%;
+        background-color: #f8f8f8;
+        border-radius: 6px;
+      }
+
+      .nav-links li a:hover {
+        background-color: #eee;
+      }
+    }
+
+
+
+    /* Hamburger icon styling */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Default nav styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+/* Dropdown menu (desktop view) */
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none; /* Disable hover effect on mobile */
+  }
+
+  .dropdown-menu a {
+    padding: 0.3rem 0;
+  }
+  /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+}
+
+/* Show dropdown when active */
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+}
+ /* Hide dropdown menus by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+}
+
+
+
+/* Desktop: show dropdown on hover */
+@media (min-width: 768px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+
+  }
+}
+
+/* Mobile: show dropdown on click (when .open is added) */
+@media (max-width: 767px) {
+  .dropdown.open .dropdown-menu {
+    display: block;
+     /* avoid position issues on small screen */
+  }
+}
+
+  
+</style>
+</head>
+<body class="bg-gradient-to-b from-amber-50 to-white text-gray-800 font-sans">
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+  <div class="logo">🎨 Artisentials</div>
+
+  <!-- Hamburger Icon -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- Nav Links -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+
+   <li class="dropdown">
+
+  <a href="canvas.html" href="canvas.html" onclick="toggleDropdown(event)" >Canvas Essentials ▼</a>
+  <ul class="dropdown-menu">
+    <li><a href="canvas.html">Best Quality & Trusted products</a></li>
+    <li><a href="canvasbudget.html">Good-Quality & Budget-Friendly products</a></li>
+    
+  </ul>
+</li>
+
+
+   <li class="dropdown">
+
+  <a href="shading.html"  onclick="toggleDropdown(event)" >Shading Tools    ▼</a>
+  <ul class="dropdown-menu">
+     <li><a href="shading.html">Best Quality & Trusted products</a></li>
+    <li><a href="shadingbudget.html">Good-Quality & Budget-Friendly products</a></li>
+   
+  </ul>
+</li>
+
+
+    <li><a href="tips.html" style="color:#ff7e5f;">Tips</a></li>
+  </ul>
+</nav>
+
+
+  <div class="pt-24">
+    <!-- Hero Section -->
+    <section class="text-center px-6 py-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-amber-700 mb-4 animate-fade-in">
+        Every Artist Should Know 🎨
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        No fluff. Just real techniques and habits from artists who’ve learned through trial & errors.
+      </p>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="max-w-4xl mx-auto px-6 space-y-10">
+
+      <!-- Original Tips (1–4) -->
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-amber-400">
+        <h2 class="text-xl font-semibold text-amber-700 mb-2">✏️ Hold Your Pencil Like a Dancer, Not a Worker</h2>
+        <p>Sounds weird? Try holding your pencil looser — like you’re guiding, not forcing. You’ll get smoother lines and reduce wrist fatigue. Practice large flowing shapes first, not tiny details.</p>
+      </div>
+
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-teal-400">
+        <h2 class="text-xl font-semibold text-teal-700 mb-2">🧼 Erasers Are for Sculpting, Not Fixing</h2>
+        <p>Don’t think of erasers as mistake-removers. Think of them as light-makers. Use a kneaded eraser to <em>lift</em> graphite and create beautiful highlights and textures — especially in hair and fabric!</p>
+      </div>
+
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-pink-400">
+        <h2 class="text-xl font-semibold text-pink-700 mb-2">🌀 Don’t Shade with Fingers. Ever.</h2>
+        <p>It oils your paper and muddies your tones. Use a blending stump, tissue, or even a piece of soft fabric. Bonus: try <em>circular shading motions</em> for more depth and richness.</p>
+      </div>
+
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-indigo-400">
+        <h2 class="text-xl font-semibold text-indigo-700 mb-2">🧠 10-Minute Daily Doodles = Brain Gym</h2>
+        <p>Even 10 minutes of sketching random shapes, faces, or hands warms up your brain. Make it a ritual — morning coffee + quick sketch = magic combo for creativity!</p>
+      </div>
+
+      <!-- New Unique Tips -->
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-lime-400">
+        <h2 class="text-xl font-semibold text-lime-700 mb-2">🌿 Use Nature as Your Mentor</h2>
+        <p>Study the way leaves curl, rocks crack, and shadows stretch across bark. Observing natural details deeply will make your sketches more alive and intuitive.</p>
+      </div>
+
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-fuchsia-400">
+        <h2 class="text-xl font-semibold text-fuchsia-700 mb-2">⏳ Don’t Finish Every Sketch</h2>
+        <p>Start fast sketches and stop midway. This trains your eye to focus on flow and proportion over perfection — a powerful skill for figure drawing and creativity boosts.</p>
+      </div>
+
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-blue-400">
+        <h2 class="text-xl font-semibold text-blue-700 mb-2">🖌️ Switch Tools Mid-Sketch</h2>
+        <p>Try jumping from pencil to pen or brush halfway through a piece. It challenges your brain to adapt and often sparks unexpected creative breakthroughs.</p>
+      </div>
+
+      <div class="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-rose-400">
+        <h2 class="text-xl font-semibold text-rose-700 mb-2">📓 Review Your Old Sketchbooks</h2>
+        <p>Once a month, flip through your old pages — not to judge but to learn. You’ll discover growth patterns, old ideas worth revisiting, and recurring themes to explore deeper.</p>
+      </div>
+
+      <!-- Pro Tip Card -->
+      <div class="bg-amber-100 p-6 rounded-xl border-l-4 border-amber-600 text-amber-800 shadow-inner">
+        <strong>🌟 Pro Tip:</strong> Your sketchbook is a playground, not a portfolio. Don’t wait for perfection — just draw. Ugly pages are proof that you’re learning.
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center mt-16 pb-20">
+      <p class="text-lg font-medium mb-4">✨ Want tools that bring these tips to life?</p>
+      <a href="prac2.html" class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-xl transition-all shadow-lg">
+        Explore Artist-Approved Tools
+      </a>
+    </section>
+  </div>
+
+  <footer class="bg-white mt-16 border-t">
+  <div class="max-w-6xl mx-auto py-8 px-6 text-center text-sm text-gray-600 space-y-3">
+    <p>© 2025 Artisentials Tools. All rights reserved.</p>
+    <p>
+      Need help or have a question? Contact me on Instagram 
+      <a href="https://www.instagram.com/_vaidehi.art_?igsh=MXJxM3p3OGU4bHYxbg==" 
+         class="text-amber-600 font-medium hover:underline" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         aria-label="Instagram - Vaidehi Art">@_vaidehi.art_</a>
+         
+    </p>
+    <nav style="margin-bottom: 10px;">
+    <a href="privacy.html" style="margin: 0 10px; color: #666; text-decoration: none;">Privacy Policy</a> |
+    <a href="terms.html" style="margin: 0 10px; color: #666; text-decoration: none;">Terms of Use</a> |
+    <a href="disclaimer.html" style="margin: 0 10px; color: #666; text-decoration: none;">Affiliate Disclaimer</a> |
+    <a href="cookies.html" style="margin: 0 10px; color: #666; text-decoration: none;">Cookie Notice</a>
+  </nav>
+    
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('active');
+  }
+
+  function toggleDropdown(event) {
+    // Only trigger click-based dropdown for mobile
+    if (window.innerWidth < 768) {
+      event.preventDefault();
+      const parent = event.target.closest('.dropdown');
+      parent.classList.toggle('open');
+    }
+  }
+</script>
+
+
+
+
+</body>
+</html>
